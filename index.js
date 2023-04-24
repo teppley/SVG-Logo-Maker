@@ -4,7 +4,7 @@ const {Circle, Square, Triangle, Ellipse, Star} = require("./lib/shapes");
 
 // Defines the Svg class 
 
-class Svg{
+class Svg {
     constructor(){
         this.textElement = ''
         this.shapeElement = ''
@@ -107,7 +107,7 @@ async function init() {
       svg.setShapeElement(star);
       break;
     default:
-      console.log("Invalid pixel image choice");
+      console.log("Invalid image choice");
       return;
   }
 
