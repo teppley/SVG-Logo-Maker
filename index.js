@@ -34,22 +34,23 @@ const questions = [
   {
       type: "input",
       name: "text-color",
-      message: "TEXT COLOR: Enter a color keyword (OR a hexadecimal number):",
+      message: "TEXT COLOR: Enter a color (OR a hexadecimal number):",
   },
   {
       type: "input",
       name: "shape",
-      message: "SHAPE COLOR: Enter a color keyword (OR a hexadecimal number):",
+      message: "SHAPE-COLOR: Enter a color (OR a hexadecimal number):",
   },
   {
       type: "list",
       name: "pixel-image",
-      message: "Choose which Pixel Image you would like?",
+      message: "Which shape you would like?",
       choices: ["Circle", "Square", "Triangle", "Ellipse", "Star"],
   },
 ]
 
 // Function to write data to file
+
 function writeToFile(fileName, data) {
 console.log("Writing [" + data + "] to file [" + fileName + "]")
   filesystem.writeFile(fileName, data, function (err) {
@@ -61,20 +62,24 @@ console.log("Writing [" + data + "] to file [" + fileName + "]")
 }
 
 async function init() {
-  console.log("Starting init");
+  console.log("Starting...");
   var svgString = "";
   var svg_file = "logo.svg";
 
   // Prompt the user for answers
+
   const answers = await inquirer.prompt(questions);
 
   // Create an instance of Svg class
+
   const svg = new Svg();
 
   // Set the text element of Svg class
+
   svg.setTextElement(answers.text, answers['text-color']);
 
-  // Set the shape element of Svg class based on user's choice
+  // Set the shape element based on user's choice
+
   switch (answers['pixel-image']) {
     case "Circle":
       const circle = new Circle();
@@ -107,6 +112,7 @@ async function init() {
   }
 
   // Render the SVG and write to file
+
   svgString = svg.render();
   writeToFile(svg_file, svgString);
 }
